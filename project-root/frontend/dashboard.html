@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script defer src="dashboard.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">BMI Dashboard</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="registration.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <h2>Welcome to Your Dashboard</h2>
+
+            <div class="chart-container">
+                <h3>Your BMI Trends</h3>
+                <canvas id="bmi-chart"></canvas>
+            </div>
+
+            <div class="recommendations">
+                <h3>Health Recommendations</h3>
+                <ul id="recommendations-list">
+                    <li>Eat a balanced diet rich in nutrients.</li>
+                    <li>Engage in regular physical activities.</li>
+                    <li>Stay hydrated and avoid excessive sugar intake.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BMI Calculator. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('bmi-chart').getContext('2d');
+
+            const bmiData = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'], // Example months
+                datasets: [{
+                    label: 'BMI Over Time',
+                    data: [22.3, 23.1, 22.8, 23.5, 22.9], // Example BMI data
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                }],
+            };
+
+            new Chart(ctx, {
+                type: 'line',
+                data: bmiData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'BMI Trends Over Time',
+                        },
+                    },
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>
