@@ -116,7 +116,8 @@ const handleCalculate = async () => {
 
       if (response.ok) {
           console.log('BMI record saved successfully:', data);
-
+          const bmiRecords = data.records
+          console.log("bmi records:", bmiRecords)
           updateChart();
           renderTable();
 

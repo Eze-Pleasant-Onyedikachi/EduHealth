@@ -6,8 +6,8 @@ const BmiRecordSchema = new mongoose.Schema({
     height: { type: Number, required: true },
     bmi: { type: Number, required: true },
     date: { type: Date, default: Date.now },
-    category: {type: String},
-    recommendation: {type: String, required: true }
+    category: {type: String, required: true},
+    recommendation: {type: String, required:  true}
 });
 
 const UserSchema = new mongoose.Schema({

@@ -20,15 +20,16 @@ document.getElementById('registration-form').addEventListener('submit', async (e
                 password: data.password,
             }),
         });
-
+        console.log(response)
         // Parse the response JSON
-        const responseData = await response.json();
+        //const responseData = await response.json();
+        //console.log(responseData)
 
         if (response.ok) {
             alert('Registration successful! Redirecting to login page...');
             window.location.href = 'login.html'; // Redirect to login page
         } else {
-            alert(responseData.error || 'Registration failed. Please try again.');
+            throw Error(responseData.error || 'Registration failed. Please try again.');
         }
     } catch (error) {
         console.error('Error:', error);
