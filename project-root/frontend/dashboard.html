@@ -1,85 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Dashboard</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script defer src="dashboard.js"></script>
-</head>
+    <link rel="stylesheet" href="dashboard.css">
+  </head>
 
-<body>
-    <header>
-        <nav>
-            <div class="logo">BMI Dashboard</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="bmi-calculator.html">BMI Calculator</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="registration.html">Register</a></li>
-            </ul>
-        </nav>
-    </header>
+  <body>
+    <div class="container">
+        <h1 id="welcome-message">Welcome, [User]</h1>
+      
+      <div class="grid">
+        <!-- BMI Calculator Card -->
+        <div class="card">
+          <h2>Calculate BMI</h2>
+          <div class="calculator">
+              <div class="form-group">
+                  <label for="weight">Weight (kg)</label>
+                  <input type="number" id="weight" placeholder="Enter weight in kg">
+              </div>
+              <div class="form-group">
+                  <label for="height">Height (m)</label>
+                  <input type="number" id="height" placeholder="Enter height in meters">
+              </div>
+              <button id="calculate-btn">Calculate & Save BMI</button>
+          </div>
+          <div id="bmi-result">
+              <h3>Your BMI: <span id="bmi-value">-</span></h3>
+              <p id="bmi-category">Category: -</p>
+              <p id="bmi-recommendation">Advice: -</p>
+          </div>
+      </div>
 
-    <main>
-        <section class="dashboard">
-            <h2>Welcome to Your Dashboard</h2>
+<!-- BMI Trend Card -->
+        <div class="card">
+          <h2>BMI Trend</h2>
+          
+          <canvas id="bmiChart"></canvas>
+        </div>
+      </div>
 
-            <div class="chart-container">
-                <h3>Your BMI Trends</h3>
-                <canvas id="bmi-chart"></canvas>
-            </div>
-
-            <div class="recommendations">
-                <h3>Health Recommendations</h3>
-                <ul id="recommendations-list">
-                    <li>Eat a balanced diet rich in nutrients.</li>
-                    <li>Engage in regular physical activities.</li>
-                    <li>Stay hydrated and avoid excessive sugar intake.</li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 BMI Calculator. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('bmi-chart').getContext('2d');
-
-            const bmiData = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'], // Example months
-                datasets: [{
-                    label: 'BMI Over Time',
-                    data: [22.3, 23.1, 22.8, 23.5, 22.9], // Example BMI data
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 2,
-                }],
-            };
-
-            new Chart(ctx, {
-                type: 'line',
-                data: bmiData,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'BMI Trends Over Time',
-                        },
-                    },
-                },
-            });
-        });
-    </script>
-</body>
-
+      <!-- BMI History Card -->
+      <div class="card">
+        <h2>BMI History</h2>
+        <div class="table-container">
+          <table id="bmiTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Weight (kg)</th>
+                <th>Height (m)</th>
+                <th>BMI</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+  </body>
+</html>
 </html>
